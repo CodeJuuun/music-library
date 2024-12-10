@@ -30,26 +30,32 @@ const library = {
 // prints a list of all playlists, in the form:
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
-const printPlaylists = function() {
-	for (const playlistsObj in library.playlists) {
-		// console.log(playlistsObj) // keys: p01, p02 of playlists
-		const valueOfName = library.playlists[playlistsObj] // value of name inside object(p01, p02)
-		// console.group(valueOfName.name) // coding music, other playlist
-		// console.log(valueOfName.tracks.length) // 2, 1
-		console.log(`${playlistsObj}: ${valueOfName.name} - ${valueOfName.tracks.length} tracks`)
-	}
-}
+// const printPlaylists = function() {
+// 	for (const playlistsObj in library.playlists) {
+// 		// console.log(playlistsObj) // keys: p01, p02 of playlists
+// 		const valueOfName = library.playlists[playlistsObj] // value of name inside object(p01, p02)
+// 		// console.group(valueOfName.name) // coding music, other playlist
+// 		// console.log(valueOfName.tracks.length) // 2, 1
+// 		console.log(`${playlistsObj}: ${valueOfName.name} - ${valueOfName.tracks.length} tracks`)
+// 	}
+// }
 
-printPlaylists()
+// printPlaylists()
 
 // prints a list of all tracks, using the following format:
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
 const printTracks = function() {
-
+	for (const track in library.tracks) { // t01, t02, t03
+		const songName 		= library.tracks[track].name // all values of name property
+		const artistName	= library.tracks[track].artist
+		const albumName 	= library.tracks[track].album
+		console.log(`${track}: ${songName} by ${artistName} (${albumName})`)
+	}
 }
 
+printTracks()
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
