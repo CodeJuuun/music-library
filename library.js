@@ -46,24 +46,36 @@ const library = {
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 // t03: Four Thirty-Three by John Cage (Woodstock 1952)
-const printTracks = function() {
-	for (const track in library.tracks) { // t01, t02, t03
-		const songName 		= library.tracks[track].name // all values of name property
-		const artistName	= library.tracks[track].artist
-		const albumName 	= library.tracks[track].album
-		console.log(`${track}: ${songName} by ${artistName} (${albumName})`)
-	}
-}
+// const printTracks = function() {
+// 	for (const track in library.tracks) { // t01, t02, t03
+// 		const songName 		= library.tracks[track].name // all values of name property
+// 		const artistName	= library.tracks[track].artist
+// 		const albumName 	= library.tracks[track].album
+// 		console.log(`${track}: ${songName} by ${artistName} (${albumName})`)
+// 	}
+// }
 
-printTracks()
+// printTracks()
 
 // prints a list of tracks for a given playlist, using the following format:
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
-const printPlaylist = function(playlistId) {
+const printPlaylist = function(playlistId) { // expecting a string paramter
+	const playlist = library.playlists[playlistId] //
+	// console.log(playlist)
+	console.log(`${playlist.id}: ${playlist.name} - ${playlist.tracks.length} tracks`)
 
+	for (const trackId of playlist.tracks) {
+		// console.log(trackId)
+		const track = library.tracks[trackId]
+		// console.log(track)
+		console.log(`${track.id}: ${track.name} by ${track.artist} (${track.album})`)
+	}
 }
+
+printPlaylist("p01")
+// printPlaylist("p02")
 
 
 // adds an existing track to an existing playlist
