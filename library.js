@@ -27,9 +27,10 @@ const library = {
 // FUNCTIONS TO IMPLEMENT:
 /////////////////////////////
 
-// prints a list of all playlists, in the form:
-// p01: Coding Music - 2 tracks
-// p02: Other Playlist - 1 tracks
+// // prints a list of all playlists, in the form:
+// // p01: Coding Music - 2 tracks
+// // p02: Other Playlist - 1 tracks
+
 // const printPlaylists = function() {
 // 	for (const playlistsObj in library.playlists) {
 // 		// console.log(playlistsObj) // keys: p01, p02 of playlists
@@ -42,10 +43,11 @@ const library = {
 
 // printPlaylists()
 
-// prints a list of all tracks, using the following format:
-// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
-// t02: Model View Controller by James Dempsey (WWDC 2003)
-// t03: Four Thirty-Three by John Cage (Woodstock 1952)
+// // prints a list of all tracks, using the following format:
+// // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
+// // t02: Model View Controller by James Dempsey (WWDC 2003)
+// // t03: Four Thirty-Three by John Cage (Woodstock 1952)
+
 // const printTracks = function() {
 // 	for (const track in library.tracks) { // t01, t02, t03
 // 		const songName 		= library.tracks[track].name // all values of name property
@@ -57,10 +59,11 @@ const library = {
 
 // printTracks()
 
-// prints a list of tracks for a given playlist, using the following format:
-// p01: Coding Music - 2 tracks
-// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
-// t02: Model View Controller by James Dempsey (WWDC 2003)
+// // prints a list of tracks for a given playlist, using the following format:
+// // p01: Coding Music - 2 tracks
+// // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
+// // t02: Model View Controller by James Dempsey (WWDC 2003)
+
 // const printPlaylist = function(playlistId) { // expecting a string paramter
 // 	const playlist = library.playlists[playlistId] //
 // 	// console.log(playlist)
@@ -78,41 +81,41 @@ const library = {
 // printPlaylist("p02")
 
 
-// adds an existing track to an existing playlist
+// // adds an existing track to an existing playlist
 
-// first check if both track and playlist exists
-const addTrackToPlaylist = function(trackId, playlistId) {
-	const tracklistId = library.tracks[trackId]
-	const playlist = library.playlists[playlistId]
-	// console.log(tracklistId) // should be the object t01, t02, t03
-	// console.log(playlist) // should be p01, p02
+// // first check if both track and playlist exists
+// const addTrackToPlaylist = function(trackId, playlistId) {
+// 	const tracklistId = library.tracks[trackId]
+// 	const playlist = library.playlists[playlistId]
+// 	// console.log(tracklistId) // should be the object t01, t02, t03
+// 	// console.log(playlist) // should be p01, p02
 
-	if (!tracklistId) {
-		console.log(`Track list ID ${trackId} does not exist`)
-		return; //add return to prevent code from running further if condition is false
-	}
+// 	if (!tracklistId) {
+// 		console.log(`Track list ID ${trackId} does not exist`)
+// 		return; //add return to prevent code from running further if condition is false
+// 	}
 	
-	if (!playlist) {
-		console.log("playlist ID doesn't exist ")
-		return;
-	}
+// 	if (!playlist) {
+// 		console.log("playlist ID doesn't exist ")
+// 		return;
+// 	}
 
-	// now check current trackID already exists in playlist, if not, then add to it
-const tracksArr = playlist.tracks
-	if (tracksArr.includes(trackId)) {
-		console.log(`track ${trackId} already exists in ${playlistId}, no need to add again` )
-		return
-	}
+// 	// now check current trackID already exists in playlist, if not, then add to it
+// const tracksArr = playlist.tracks
+// 	if (tracksArr.includes(trackId)) {
+// 		console.log(`track ${trackId} already exists in ${playlistId}, no need to add again` )
+// 		return
+// 	}
 
-	tracksArr.push(trackId)
-	console.log(`${trackId} has been added to ${playlistId}`)
-	console.log(playlist)
-}
+// 	tracksArr.push(trackId)
+// 	console.log(`${trackId} has been added to ${playlistId}`)
+// 	console.log(playlist)
+// }
 
-addTrackToPlaylist("t03",  "p01")
-addTrackToPlaylist("t01",  "p02")
-addTrackToPlaylist("t02",  "p02")
-addTrackToPlaylist("t01",  "p02")
+// addTrackToPlaylist("t03",  "p01")
+// addTrackToPlaylist("t01",  "p02")
+// addTrackToPlaylist("t02",  "p02")
+// addTrackToPlaylist("t01",  "p02")
 
 
 
@@ -122,17 +125,41 @@ const generateUid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 }
 
+// console.log(generateUid())
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
+	const newTrackId = generateUid()
+	const trackObj = {
+		id: newTrackId,
+		name: name,
+		artist: artist,
+		album: album
+	}
 
+	library.tracks[newTrackId] = trackObj
+
+	console.log(`${trackObj.name} has been added to the library`)
 }
 
+addTrack("GetUp", "GoodMorning Pancake", "Getup")
+console.log(library.tracks)
 
 // adds a playlist to the library
 const addPlaylist = function(name) {
+	const newPlaylistId 	= generateUid()
+	const newPlaylistObj 	= 
+	{
+		id: newPlaylistId,
+		name: name,
+	}
+
+	library.playlists[newPlaylistId] = newPlaylistObj
 
 }
+
+addPlaylist("Morning get up song")
+console.log(library.playlists)
 
 
 // STRETCH:
