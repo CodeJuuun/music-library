@@ -97,33 +97,33 @@ const library = {
 		console.log(playlist)
 	},
 //-------------------------------------------------------------
-generateUid: function() {
-  return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-},
-//-------------------------------------------------------------
-addTrack: function(name, artist, album) {
-	const newTrackId = this.generateUid();
-  const trackObj = {
-		id: newTrackId,
-    name: name,
-    artist: artist,
-    album: album
-  };
-	
-  this.tracks[newTrackId] = trackObj;
-	
-  console.log(`${trackObj.name} has been added to the library`);
-},
-//-------------------------------------------------------------
-addPlaylist: function(name) {
-	const newPlaylistId 	= this.generateUid();
-  const newPlaylistObj 	=
-	{
-		id: newPlaylistId,
-	  name: name,
-	};
-  this.playlists[newPlaylistId] = newPlaylistObj;
-}
+	generateUid: function() {
+		return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+	},
+	//-------------------------------------------------------------
+	addTrack: function(name, artist, album) {
+		const newTrackId = this.generateUid();
+		const trackObj = {
+			id: newTrackId,
+			name: name,
+			artist: artist,
+			album: album
+		};
+		
+		this.tracks[newTrackId] = trackObj;
+		
+		console.log(`${trackObj.name} has been added to the library`);
+	},
+	//-------------------------------------------------------------
+	addPlaylist: function(name) {
+		const newPlaylistId 	= this.generateUid();
+		const newPlaylistObj 	=
+		{
+			id: newPlaylistId,
+			name: name,
+		};
+		this.playlists[newPlaylistId] = newPlaylistObj;
+	}
 };
 
 library.generateUid()
