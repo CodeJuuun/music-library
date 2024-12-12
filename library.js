@@ -61,27 +61,59 @@ const library = {
 // p01: Coding Music - 2 tracks
 // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
 // t02: Model View Controller by James Dempsey (WWDC 2003)
-const printPlaylist = function(playlistId) { // expecting a string paramter
-	const playlist = library.playlists[playlistId] //
-	// console.log(playlist)
-	console.log(`${playlist.id}: ${playlist.name} - ${playlist.tracks.length} tracks`)
+// const printPlaylist = function(playlistId) { // expecting a string paramter
+// 	const playlist = library.playlists[playlistId] //
+// 	// console.log(playlist)
+// 	console.log(`${playlist.id}: ${playlist.name} - ${playlist.tracks.length} tracks`)
 
-	for (const trackId of playlist.tracks) {
-		// console.log(trackId)
-		const track = library.tracks[trackId]
-		// console.log(track)
-		console.log(`${track.id}: ${track.name} by ${track.artist} (${track.album})`)
-	}
-}
+// 	for (const trackId of playlist.tracks) {
+// 		// console.log(trackId)
+// 		const track = library.tracks[trackId]
+// 		// console.log(track)
+// 		console.log(`${track.id}: ${track.name} by ${track.artist} (${track.album})`)
+// 	}
+// }
 
-printPlaylist("p01")
+// printPlaylist("p01")
 // printPlaylist("p02")
 
 
 // adds an existing track to an existing playlist
-const addTrackToPlaylist = function(trackId, playlistId) {
 
+// first check if both track and playlist exists
+const addTrackToPlaylist = function(trackId, playlistId) {
+	const tracklistId = library.tracks[trackId]
+	const playlist = library.playlists[playlistId]
+	// console.log(tracklistId) // should be the object t01, t02, t03
+	// console.log(playlist) // should be p01, p02
+
+	if (!tracklistId) {
+		console.log(`Track list ID ${trackId} does not exist`)
+		return; //add return to prevent code from running further if condition is false
+	}
+	
+	if (!playlist) {
+		console.log("playlist ID doesn't exist ")
+		return;
+	}
+
+	// now check current trackID already exists in playlist, if not, then add to it
+const tracksArr = playlist.tracks
+	if (tracksArr.includes(trackId)) {
+		console.log(`track ${trackId} already exists in ${playlistId}, no need to add again` )
+		return
+	}
+
+	tracksArr.push(trackId)
+	console.log(`${trackId} has been added to ${playlistId}`)
+	console.log(playlist)
 }
+
+addTrackToPlaylist("t03",  "p01")
+addTrackToPlaylist("t01",  "p02")
+addTrackToPlaylist("t02",  "p02")
+addTrackToPlaylist("t01",  "p02")
+
 
 
 // generates a unique id
